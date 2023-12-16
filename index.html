@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StarPro an Effective Way for Project Management</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .text-primary-600 {
+        color: #3b82f6;
+      }
+      .text-primary-500 {
+        color: #2563eb;
+      }
+      .bg-f7f7f7 {
+        background-color: #f7f7f7;
+      }
+
+      .login-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .login-form-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+      .nav-link:hover {
+        color: blue;
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-100 font-sans text-lg">
+    <!-- Header -->
+    <nav class="bg-white fixed w-full z-20 top-0 border-b border-gray-200">
+      <div class="max-w-screen-xl mx-auto px-4">
+        <div class="flex items-center justify-between py-4">
+          <a class="flex items-center space-x-3 rtl:space-x-reverse">
+            <span class="text-2xl font-bold whitespace-nowrap">StarPro</span>
+          </a>
+          <div class="hidden md:flex md:items-center md:space-x-8">
+            <a href="#" class="nav-link" data-scroll-to="hero">Home</a>
+            <a href="#" class="nav-link" data-scroll-to="about">About</a>
+            <a href="#" class="nav-link" data-scroll-to="method">Method</a>
+            <a href="#" class="nav-link" data-scroll-to="tools">Tools</a>
+            <a href="#" class="nav-link" data-scroll-to="ebook">Ebook</a>
+          </div>
+          <div
+            class="flex items-center space-x-3 md:space-x-0 rtl:space-x-reverse"
+          >
+            <button
+              data-scroll-to="ebook"
+              type="button"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-2 text-center"
+            >
+              Login
+            </button>
+            <button
+              id="menuToggle"
+              type="button"
+              class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Open main menu</span>
+              <svg
+                class="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 17 14"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M1 1h15M1 7h15M1 13h15"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div id="navbar-sticky" class="hidden lg:md:block">
+          <ul
+            class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:bg-white"
+          >
+            <li>
+              <a
+                href="#"
+                class="block py-2 px-3 text-white bg-blue-700 rounded"
+                data-scroll-to="hero"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100"
+                data-scroll-to="about"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100"
+                data-scroll-to="method"
+                >Method</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100"
+                data-scroll-to="tools"
+                >Tools</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100"
+                data-scroll-to="ebook"
+                >Ebook</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <script>
+        function toggleMenu() {
+          const menu = document.getElementById("navbar-sticky");
+          menu.classList.toggle("hidden");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+          const navLinks = document.querySelectorAll(".nav-link");
+
+          navLinks.forEach(function (link) {
+            link.addEventListener("click", function () {
+              const navbarSticky = document.getElementById("navbar-sticky");
+              navbarSticky.classList.add("hidden");
+            });
+          });
+
+          const menuToggle = document.getElementById("menuToggle");
+          menuToggle.addEventListener("click", function () {
+            toggleMenu();
+          });
+
+          const scrollElements = document.querySelectorAll("[data-scroll-to]");
+
+          scrollElements.forEach((elem) => {
+            elem.addEventListener("click", (e) => {
+              e.preventDefault();
+
+              const id = elem.getAttribute("data-scroll-to");
+              document.getElementById(id).scrollIntoView({
+                behavior: "smooth",
+              });
+
+              const navbarSticky = document.getElementById("navbar-sticky");
+              navbarSticky.classList.add("hidden");
+            });
+          });
+        });
+      </script>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="bg-gray-100 py-32 md:py-64">
+      <div class="container mx-auto px-4 my-8 md:my-16">
+        <div class="text-center mb-8 md:mb-12 lg:mb-20">
+          <h1
+            class="text-4xl md:text-6xl lg:text-7xl leading-tight font-bold mb-6 md:mb-8 mx-4 md:mx-auto lg:mx-52"
+          >
+            <a
+              class="bg-gradient-to-r from-blue-500 to-green-500 text-transparent bg-clip-text"
+              >Master Project Management</a
+            >
+            knowledge and Skyrocket Productivity 🚀
+          </h1>
+
+          <p class="text-black text-lg md:text-2xl lg:text-3xl mx-4 md:mx-8">
+            Gain full knowledge all about project management to reach goals and
+            ensure overall project success.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <p class="text-lg md:text-xl lg:text-2xl font-semibold mb-2 md:mb-4">
+            Enter your email for free ebooks
+          </p>
+          <div class="flex flex-col md:flex-row items-center">
+            <input
+              class="border border-gray-300 rounded-full py-2 px-4 w-full md:w-80 mb-2 md:mb-0 mr-0 md:mr-2"
+              placeholder="your@mail.com"
+              autocomplete="on"
+              autocapitalize="off"
+              spellcheck="false"
+              type="email"
+              name="email"
+              required
+            />
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 flex items-center"
+              data-scroll-to="ebook"
+            >
+              <span class="mr-1">Get Started</span>
+              <svg
+                class="w-4 h-4 fill-current ml-2"
+                viewBox="0 0 9 7"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M4.628.616a.5.5 0 1 0-.64.768L6.203 3.23H.5a.5.5 0 0 0 0 1h5.612L3.988 6a.5.5 0 1 0 .64.769l3.23-2.693a.5.5 0 0 0 0-.768L4.628.616z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- about section -->
+    <section id="about" class="bg-gray-100 py-8 pt-24 lg:py-32">
+      <div class="container mx-auto px-4 grid md:grid-cols-2 gap-4">
+        <div class="md:order-2">
+          <h2 class="text-2xl lg:text-3xl font-bold mb-4 lg:mb-6">
+            An Effective Method for Project Management
+          </h2>
+
+          <div>
+            <p
+              class="text-base lg:text-lg tracking-wide leading-7 lg:leading-8"
+            >
+              Project management skills are essential for improving productivity
+              and efficiency in any organization. Proper project management
+              involves <mark>planning</mark>, <mark>execution</mark>, and
+              <mark>control</mark>, optimizing workflows, enhancing team
+              collaboration, and ensuring on-time delivery. Understanding core
+              methodologies like
+              <a class="break-words text-black font-semibold">Agile</a>,
+              <a class="break-words text-black font-semibold">Waterfall</a>,
+              <a class="break-words text-black font-semibold">PRINCE2</a>, and
+              others is key for effective management.
+            </p>
+          </div>
+
+          <div class="mt-8 lg:mt-12">
+            <button
+              class="bg-blue-500 text-white rounded-full py-2 px-4 hover:bg-blue-600 transition duration-300"
+              data-scroll-to="method"
+            >
+              Read More
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center mt-8 md:mt-0"
+        >
+          <div
+            class="bg-white rounded shadow rounded-lg p-4 flex flex-col items-center"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2029/2029830.png"
+              alt="plans"
+              class="text-white w-12 h-12 mb-3"
+            />
+            <h2 class="text-xl lg:text-2xl font-semibold mb-2 text-gray-800">
+              Planning
+            </h2>
+            <p class="text-gray-600">
+              Discover a curated selection of applications designed to
+              streamline your workflow and boost productivity.
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded shadow rounded-lg p-4 flex flex-col items-center mt-4 md:mt-0"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/781/781902.png"
+              alt="budget"
+              class="text-white w-12 h-12 mb-3"
+            />
+            <h2 class="text-xl lg:text-2xl font-semibold mb-2 text-gray-800">
+              Budget
+            </h2>
+            <p class="text-gray-600">
+              Navigate through financial considerations, resource allocation,
+              and strategic planning to ensure a solid foundation.
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded shadow rounded-lg p-4 flex flex-col items-center mt-4 md:mt-0"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/511/511587.png"
+              alt="integration"
+              class="text-white w-12 h-12 mb-3"
+            />
+            <h2 class="text-xl lg:text-2xl font-semibold mb-2 text-gray-800">
+              Integration
+            </h2>
+            <p class="text-gray-600">
+              Explore the art of seamless communication, managing diverse
+              perspectives, and creating a collaborative environment.
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded shadow rounded-lg p-4 flex flex-col items-center mt-4 md:mt-0"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/1086/1086581.png"
+              alt="tools"
+              class="text-white w-12 h-12 mb-3"
+            />
+            <h2 class="text-xl lg:text-2xl font-semibold mb-2 text-gray-800">
+              Tools
+            </h2>
+            <p class="text-gray-600">
+              Master the art of project initiation, ensuring a smooth start and
+              setting the stage for a successful project journey.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Method Section -->
+    <section id="method" class="py-16 lg:py-12 bg-white">
+      <div class="container mx-auto px-4 py-8 lg:py-12">
+        <div id="featureContent" class="flex flex-wrap justify-center"></div>
+      </div>
+
+      <script>
+        const featuresData = [
+          {
+            imageSrc:
+              "https://assets.asana.biz/transform/f3519623-44e4-4506-8e1f-38cb74819c58/inline-agile-agile-methodology-1-2x?io=transform:fill,width:1440&format=webp",
+            heading: "Agile",
+            desc: "In summary Agile methodology is a project management framework that breaks projects down into several dynamic phases, commonly known as sprints. In this article, get a high-level overview of Agile project management, plus a few common frameworks to choose the right one for your team.",
+            listItems: [
+              "Project planning — As with any project, before beginning your team should understand the end goal, the value to the organization or client, and how it will be achieved. But remember that the purpose of using Agile project management is to be able to address changes and additions to the project easily, so the project scope shouldn’t be seen as unchangeable.",
+              "Product roadmap creation — At this point, you will develop a product backlog, which is a list of all the features and deliverables that will make up the final product. When you plan sprints later on, your team will pull tasks from this backlog.",
+              "Release planning (develop) — There is one implementation date that comes after an entire project has been developed. When using Agile, however, your project uses shorter development cycles (called sprints) with features released at the end of each cycle.Before kicking off the project, you’ll make a high-level plan for feature releases and at the beginning of each sprint, you’ll revisit and reassess the release plan for that feature.",
+              "Sprint planning (test) — What will be accomplished by each person during that sprint, How it will be achieved, Assess the task load. It’s important to share the load evenly among team members so they can accomplish their assigned tasks during the sprint.",
+              "Deploy — To help your team accomplish their tasks during each sprint and assess whether any changes need to be made, hold short daily stand-up meetings. During these meetings, each team member will briefly talk about what they accomplished the day before and what they will be working on that day.",
+              "Review and retrospective — First, show the project with to the stakeholders to show them the finished product. This is an important part, it allows both groups to discruss product issues that arise.",
+            ],
+            link: "https://www.atlassian.com/agile/project-management",
+          },
+          {
+            imageSrc:
+              "https://assets.asana.biz/transform/a6df6b88-06c5-4de4-a946-b833b389bc0c/inline-project-management-project-management-methodologies-1-2x?io=transform:fill,width:768&format=webp",
+            heading: "Waterfall",
+            desc: "In summary Waterfall project management is a sequential project management methodology that's divided into distinct phases. Each phase begins only after the previous phase is completed. This article explains the phases of waterfall project management and how it can help your team achieve their goals.",
+            listItems: [
+              "Requirements phase — This is the initial planning process in which the team gathers as much information as possible to ensure a successful project. This planning process is a crucial part of the waterfall model, and because of that, most of the project timeline is often spent planning.",
+              "Design phase — Here, software developers design a technical solution to the problems set out by the product requirements, including scenarios, layouts, and data models. First, a higher-level or logical design is created that describes the purpose and scope of the project, the general traffic flow of each component, and the integration points.",
+              "Implementation phase —  In this phase, programmers code applications based on project requirements and specifications, with some testing and implementation taking place as well. If significant changes are required during this stage, this may mean going back to the design phase.",
+              "Verification or testing phase — Testing needs to be done to ensure the product has no errors and all of the requirements have been completed, ensuring a good user experience with the software. The testing team will turn to the design documents, personas, and user case scenarios supplied by the product manager to create their test cases.",
+              "Deployment and maintenance phase — Once the software has been deployed, a team will be assigned to take care of updates and release new versions of the software.",
+            ],
+            link: "https://www.forbes.com/advisor/business/what-is-waterfall-methodology/",
+          },
+          {
+            imageSrc:
+              "https://assets.asana.biz/transform/6c5f0d84-093c-48d9-88d8-4ce08977837f/article-project-management-prince2-methodology-2x?io=transform:fill,width:768&format=webp",
+            heading: "PRINCE2",
+            desc: "In short, PRINCE2 is a project management methodology that emphasizes organization and control. The acronym PRINCE stands for 'PRojects IN Controlled Environments.' This project management framework is linear and process-based, focusing on moving initiatives through predefined stages.",
+            listItems: [
+              "Starting up a project — The project team submits a project plan using a project mandate, which is a rough outline of what the project entails. This provides a general idea of the project and clearly defines the business case. Once approved (often by the project board) the project team creates a more detailed project brief.",
+              "Directing — The project board reviews the project briefs and decides what’s required for the team to move forward. This could mean altering some aspects of the project brief to accommodate for resources or time.",
+              "Controlling — During this phase, the project manager breaks down parts of the project to make them more manageable. They then delegate these smaller portions to individual team members to work on and complete.",
+              "Review and retrospective — First, show the project with to the stakeholders to show them the finished product. This is an important part, it allows both groups to discruss product issues that arise.",
+              "Managing stage boundaries  — At the end of each stage, the project board holds a review to decide if the project should continue moving forward, or if the team should abandon the project.",
+              "Closing — The project manager completes any final documentation, outcomes, and reporting before completely ending the lifecycle of this project.",
+            ],
+            link: "https://monday.com/blog/project-management/prince2/",
+          },
+        ];
+
+        function generateFeatureContent(data) {
+          return data
+            .map(
+              (feature, index) => `
+              <div class="w-full lg:w-5/6 text-center">
+                <h2 class="text-3xl lg:text-5xl font-bold">${
+                  feature.heading
+                }</h2>
+                <p class="text-base lg:text-lg text-gray-600 mt-4 mb-6 hidden md:block">${
+                  feature.desc
+                }</p>
+              </div>
+              <div class="flex flex-col lg:flex-row items-center justify-between mb-10">
+                <div class="w-full lg:w-1/2 lg:pl-6 lg:pr-4 ${
+                  index % 2 === 0 ? "order-2 lg:order-1" : "order-1 lg:order-2"
+                }">
+                  <div class="lg:hidden mb-6">
+                    <img src="${feature.imageSrc}" alt="${
+                feature.heading
+              }" class="w-full rounded-lg">
+                    <p class="text-base lg:text-lg text-gray-600 mt-4">${
+                      feature.desc
+                    }</p>
+                  </div>
+                  <ul class="text-base lg:text-lg mb-6">
+                    ${feature.listItems
+                      .map(
+                        (item) => `
+                          <li class="mb-4 text-justify">
+                            ${item.replace(
+                              /(Project planning|Product roadmap creation|Release planning|Sprint planning|Review and retrospective|Requirements phase|Design phase|Implementation phase|Verification or testing phase|Deployment and maintenance phase|Deploy|Starting up a project|Directing|Controlling|Managing stage boundaries|Closing)/g,
+                              '<span class="font-bold">$1</span>'
+                            )}
+                          </li>
+                        `
+                      )
+                      .join("")}
+                  </ul>
+                  <div class="lg:block">
+                    <a href="${
+                      feature.link
+                    }" class="block w-full lg:w-auto bg-indigo-500 text-white py-2 px-4 rounded inline-flex items-center justify-center hover:bg-indigo-600 transition duration-300">
+                      Learn More About ${feature.heading}
+                      <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="w-full lg:w-1/2 mb-6 lg:mb-0 lg:flex lg:items-center ${
+                  index % 2 === 0 ? "order-1 lg:order-2" : "order-2 lg:order-1"
+                }">
+                  <img src="${feature.imageSrc}" alt="${
+                feature.heading
+              }" class="w-full rounded-lg lg:block hidden">
+                </div>
+              </div>
+            `
+            )
+            .join("");
+        }
+
+        const featureContent = document.getElementById("featureContent");
+        featureContent.innerHTML = generateFeatureContent(featuresData);
+      </script>
+    </section>
+
+    <!-- Top Tools Section -->
+    <section id="tools" class="py-8 pt-20 lg:py-20 pt-28 bg-white">
+      <div class="container mx-auto text-center">
+        <h2 class="text-3xl lg:text-5xl font-bold mb-4">
+          Top 5 Tools for Project Management
+        </h2>
+
+        <p class="mb-6 text-base lg:text-lg text-gray-800">
+          Increase productivity by leveraging these recommended online tools for
+          efficient project management.
+        </p>
+
+        <div class="flex flex-wrap justify-center" id="cardsContainer"></div>
+      </div>
+
+      <script>
+        const cardsData = [
+          {
+            title: "Trello",
+            desc: "Trello isn’t just about Kanban: it also offers many other views and functions for managing projects and tasks. However, this tool will soon be limited for large teams or complex projects.",
+            link: "https://trello.com/?&aceid=&adposition=&adgroup=142092507816&campaign=18416577516&creative=656953196343&device=c&keyword=trello&matchtype=e&network=g&placement=&ds_kids=p73328920253&ds_e=GOOGLE&ds_eid=700000001557344&ds_e1=GOOGLE&gad_source=1&gclid=CjwKCAiAx_GqBhBQEiwAlDNAZrTI__ijoR3luvxA2zsIRBVC4KqoweBz-Ajh46mbjXiRRc5g5UWx1hoCikMQAvD_BwE&gclsrc=aw.ds",
+            image:
+              "https://1000logos.net/wp-content/uploads/2021/05/Trello-logo-500x281.png",
+          },
+          {
+            title: "Jira",
+            desc: "Jira is the project management software developed by the software giant Atlassian. It is suitable for all types of business due to its advanced customisation featuresm its is particularly suited to marketing, HR and web developers",
+            link: "https://www.atlassian.com/software/jira",
+            image:
+              "https://logosmarken.com/wp-content/uploads/2021/03/Jira-Logo-650x366.png",
+          },
+          {
+            title: "Asana",
+            desc: "Asana is one of the really solid solutions,the pay-as-you-go plan offers high-quality functional depth, with advanced automation and reporting, it remains slightly more expensive than those of its competitors.",
+            link: "https://asana.com/",
+            image:
+              "https://assets.asana.biz/m/5f083bc48e06e1e2/original/asana-logo-1200x1200.png",
+          },
+          {
+            title: "Wrike",
+            desc: "Wrike, this software is ideal for complex projects and large teams. Although Wrike can be more difficult to set up for small teams, its qualities mean that it is used by over 20,000 customers worldwide.",
+            link: "https://www.wrike.com/",
+            image:
+              "https://upload.wikimedia.org/wikipedia/commons/8/80/Wrike-logo.png?20200625145630",
+          },
+          {
+            title: "Monday.com",
+            desc: "Monday CRM is dedicated sales software that enables business owners, sales teams and RevOps to manage the entire sales cycle, from pre-sales to sales completion.",
+            link: "https://monday.com/?cq_src=google_ads&cq_cmp=18570564138&cq_term=monday.com&cq_plac=&cq_net=g&cq_plt=gp&utm_medium=cpc&utm_source=adwordsbrand&utm_campaign=ww2-en-prm-workos-work_mgmt-brand-e-search-desktop-core-aw&utm_keyword=monday.com&utm_match_type=e&cluster=&subcluster=&ati=&utm_adgroup=monday.com&utm_banner=675398321203&gad_source=1&gclid=CjwKCAiAx_GqBhBQEiwAlDNAZsJypjQ0ULIyp6RVyqFWAQ39GBjtWd3IpacLoYmqX4K77rRJCk-aSRoCeQgQAvD_BwE",
+            image:
+              "https://i.pcmag.com/imagery/reviews/07uLSXntFIIwuWNgdqDcc7v-37.fit_scale.size_1028x578.v1608579277.jpg",
+          },
+        ];
+
+        function generateCards(data) {
+          const cardsContainer = document.getElementById("cardsContainer");
+
+          data.forEach((card) => {
+            const cardElement = document.createElement("div");
+            cardElement.className = "p-4 max-w-sm";
+
+            cardElement.innerHTML = `
+            <div class="bg-f7f7f7 flex flex-col h-full rounded-lg shadow-lg overflow-hidden">
+                ${
+                  card.title === "Asana"
+                    ? `<img src="${card.image}" alt="${card.title}" class="object-cover h-40 mx-auto my-4">`
+                    : card.title === "Wrike"
+                    ? `<img src="${card.image}" alt="${card.title}" class="object-fill h-16 mx-10 my-16">`
+                    : `<img src="${card.image}" alt="${card.title}" class="h-48 w-full object-cover">`
+                }
+            <div class="p-6 bg-white flex flex-col justify-between h-full">
+              <div class="text-left">
+                <h3 class="text-xl lg:text-3xl font-bold mb-2">${
+                  card.title
+                }</h3>
+                <p class="text-sm lg:text-base text-gray-600 mb-4">
+                  ${card.desc}
+                </p>
+              </div>
+              <a href="${
+                card.link
+              }" class="inline-flex items-center text-white bg-indigo-500 hover:bg-indigo-600 rounded-lg py-2 px-4 self-start text-sm lg:text-base">
+                Read More
+                <svg class="w-4 lg:w-6 h-4 lg:h-6 ml-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+              </a>
+            </div>
+          </div>
+        `;
+
+            cardsContainer.appendChild(cardElement);
+          });
+        }
+
+        window.onload = function () {
+          generateCards(cardsData);
+        };
+      </script>
+    </section>
+
+    <!-- Ebook Section -->
+    <section id="ebook" class="py-20">
+      <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-8">
+          Free Course in E-Book for Project Management Fundamentals
+        </h2>
+
+        <p class="mb-6 text-gray-500">
+          Get a comprehensive introduction to project management basics.
+        </p>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 p-10 lg:grid-cols-3 gap-6 text-left"
+          id="ebooksContainer"
+        >
+          <!-- Ebooks will be dynamically generated here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+      <div class="login-form-container">
+        <h1
+          class="text-xl font-bold leading-tight tracking-tight text-gray-900 mb-4 md:text-2xl"
+        >
+          Login to continue read e-books
+        </h1>
+        <form class="space-y-4 md:space-y-6" action="#">
+          <div>
+            <label
+              for="email"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Your email</label
+            >
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              placeholder="your@mail.com"
+              required=""
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-indigo-500 text-white py-2.5 px-5 rounded-lg focus:outline-none hover:bg-indigo-600"
+          >
+            Continue
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Your data containing information for each ebook
+      const ebooksData = [
+        {
+          title: "Best project management practices in one place",
+          description:
+            "Implement strategies, address training gaps, and select the right vendors with our AI playbook.",
+          imageURL: "https://pm-guide.netguru.com/images/banner-shadow.png",
+          link: "https://pm-guide.netguru.com/chapters/00-introduction.html",
+        },
+        {
+          title: "An operator's guide to powering your org with AI",
+          description:
+            "Implement strategies, address training gaps, and select the right vendors with our AI playbook.",
+          imageURL:
+            "https://assets.asana.biz/transform/bcc6af54-fc75-4a61-9bd2-bb4356f4bc35/web-teams-operations-demo-thumbnail?io=transform:fill,width:1680&format=webp",
+          link: "/resources/human-centric-ai-operations-playbook?utm_medium=web&utm_source=feature&utm_campaign=aiplaybook24",
+        },
+        {
+          title: "An operator's guide to powering your org with AI",
+          description:
+            "Implement strategies, address training gaps, and select the right vendors with our AI playbook.",
+          imageURL:
+            "https://assets.asana.biz/transform/bcc6af54-fc75-4a61-9bd2-bb4356f4bc35/web-teams-operations-demo-thumbnail?io=transform:fill,width:1680&format=webp",
+          link: "/resources/human-centric-ai-operations-playbook?utm_medium=web&utm_source=feature&utm_campaign=aiplaybook24",
+        },
+      ];
+
+      // Function to generate HTML for each ebook item
+      function generateEbookHTML(ebook) {
+        return `
+        <div class="slick-slide slick-active outline-none border border-gray-300 rounded-lg">
+          <div class="ebook-link block " data-link="${ebook.link}">
+            <div class="relative overflow-hidden">
+              <span class="block relative" style="padding-top: 66.58%">
+                <img alt="${ebook.title}" src="${ebook.imageURL}" class="absolute top-0 left-0 w-full h-full object-cover" sizes="100vw" srcset="${ebook.imageURL}" />
+              </span>
+            </div>
+            <div class="p-2 m-6">
+              <span class="block text-sm uppercase font-bold mb-2">
+                <span class="p-1 px-3 text-gray-500 bg-gray-200 tracking-widest">EBOOK</span>
+              </span>
+              <h4 class="text-2xl font-bold mt-5 mb-10">${ebook.title}</h4>
+              <p id="description-info-card-large-72" class="mt-1">${ebook.description}</p>
+              <div class="flex flex-justify-center mt-8 hover:underline underline-offset-4">
+                <span class="text-lg font-medium ">Get the insights</span>
+                <svg class="w-8 h-8 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      }
+
+      // Generating HTML for all ebooks using map and joining the results
+      const ebooksHTML = ebooksData
+        .map((ebook) => generateEbookHTML(ebook))
+        .join("");
+
+      // Inserting the generated HTML into the section
+      const ebooksContainer = document.getElementById("ebooksContainer");
+      ebooksContainer.innerHTML = ebooksHTML;
+
+      // Get all ebook link elements
+      const ebookLinks = document.querySelectorAll(".ebook-link");
+
+      // Get the login modal
+      const loginModal = document.getElementById("loginModal");
+
+      // Get the login form element
+      const loginForm = document.querySelector("#loginModal form");
+
+      // Function to show the login modal when an ebook link is clicked
+      function showLoginForm(event) {
+        event.preventDefault();
+        loginModal.style.display = "flex";
+        // You can retrieve the link from the clicked ebook if needed
+        const link = event.currentTarget.getAttribute("data-link");
+        console.log("Clicked Ebook Link:", link);
+        loginForm.setAttribute("data-link", link); // Save the ebook link in the form
+      }
+
+      // Add click event listeners to all ebook links
+      ebookLinks.forEach((link) => {
+        link.addEventListener("click", showLoginForm);
+      });
+
+      // Close the modal when clicked outside the form
+      loginModal.addEventListener("click", function (event) {
+        if (event.target === loginModal) {
+          loginModal.style.display = "none";
+        }
+      });
+
+      // Function to handle form submission
+      function handleLoginFormSubmission(event) {
+        event.preventDefault();
+        const userEmail = document.getElementById("email").value;
+
+        const isAuthenticated = !!userEmail;
+
+        if (isAuthenticated) {
+          const link = loginForm.getAttribute("data-link");
+          window.location.href = link;
+        } else {
+          alert("Authentication failed. Please provide valid credentials.");
+        }
+      }
+
+      loginForm.addEventListener("submit", handleLoginFormSubmission);
+    </script>
+
+    <!-- Footer Section -->
+    <footer class="bg-white">
+      <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+          <div class="mb-6 md:mb-0">
+            <a href="{{< param homepage >}}/" class="flex items-center">
+              <span class="self-center text-2xl font-semibold whitespace-nowrap"
+                >StarPro</span
+              >
+            </a>
+          </div>
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+            <div>
+              <h2
+                class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+              >
+                Follow us
+              </h2>
+              <ul class="text-gray-500 font-medium">
+                <li class="mb-4">
+                  <a href="https://instagram.com/" class="hover:underline"
+                    >Instagram</a
+                  >
+                </li>
+                <li class="mb-4">
+                  <a href="https://github.com/" class="hover:underline"
+                    >Github</a
+                  >
+                </li>
+                <li class="mb-4">
+                  <a href="https://youtube.com/" class="hover:underline"
+                    >Youtube</a
+                  >
+                </li>
+                <li>
+                  <a href="https://discord.gg/" class="hover:underline"
+                    >Discord</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">
+                Legal
+              </h2>
+              <ul class="text-gray-500 font-medium">
+                <li class="mb-4">
+                  <a href="#" class="hover:underline">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
+            >© 2023
+            <a href="{{< param homepage >}}/" class="hover:underline"
+              >StarPro™</a
+            >. All Rights Reserved.
+          </span>
+          <div class="flex mt-4 sm:justify-center sm:mt-0">
+            <a
+              href="#"
+              class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+            >
+              <svg
+                class="w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 8 19"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="sr-only">Facebook page</span>
+            </a>
+            <a
+              href="#"
+              class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+            >
+              <svg
+                class="w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 21 16"
+              >
+                <path
+                  d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"
+                />
+              </svg>
+              <span class="sr-only">Discord community</span>
+            </a>
+            <a
+              href="#"
+              class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+            >
+              <svg
+                class="w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 17"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="sr-only">Twitter page</span>
+            </a>
+            <a
+              href="#"
+              class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+            >
+              <svg
+                class="w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="sr-only">GitHub account</span>
+            </a>
+            <a
+              href="#"
+              class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+            >
+              <svg
+                class="w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="sr-only">Dribbble account</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
