@@ -41,6 +41,10 @@
       .nav-link:hover {
         color: blue;
       }
+      .block.active {
+        background-color: #3b82f6; /* Blue color */
+        color: white;
+      }
     </style>
   </head>
 
@@ -101,7 +105,7 @@
             <li>
               <a
                 href="#"
-                class="block py-2 px-3 text-white bg-blue-700 rounded"
+                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100"
                 data-scroll-to="hero"
                 >Home</a
               >
@@ -143,25 +147,60 @@
       </div>
 
       <script>
+        function handleClick(event) {
+          event.preventDefault();
+          const navLinks = document.querySelectorAll(".block");
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+          });
+          event.target.classList.add("active");
+        }
+
+        function setupNavLinks() {
+          const navLinks = document.querySelectorAll(".block");
+          navLinks.forEach((link) => {
+            link.addEventListener("click", handleClick);
+          });
+        }
+
+        function handleScroll() {
+          const sections = document.querySelectorAll("section");
+          let currentSection = "";
+
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+
+            if (window.pageYOffset >= sectionTop - sectionHeight / 3) {
+              currentSection = section.getAttribute("id");
+            }
+          });
+
+          if (currentSection) {
+            const navLinks = document.querySelectorAll(".block");
+            navLinks.forEach((link) => {
+              link.classList.remove("active");
+              if (link.getAttribute("data-scroll-to") === currentSection) {
+                link.classList.add("active");
+              }
+            });
+          }
+        }
+
+        function setupScrollEvent() {
+          window.addEventListener("scroll", handleScroll);
+        }
+
         function toggleMenu() {
           const menu = document.getElementById("navbar-sticky");
           menu.classList.toggle("hidden");
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
-          const navLinks = document.querySelectorAll(".nav-link");
-
-          navLinks.forEach(function (link) {
-            link.addEventListener("click", function () {
-              const navbarSticky = document.getElementById("navbar-sticky");
-              navbarSticky.classList.add("hidden");
-            });
-          });
+        function setupMenu() {
+          setupNavLinks();
 
           const menuToggle = document.getElementById("menuToggle");
-          menuToggle.addEventListener("click", function () {
-            toggleMenu();
-          });
+          menuToggle.addEventListener("click", toggleMenu);
 
           const scrollElements = document.querySelectorAll("[data-scroll-to]");
 
@@ -178,6 +217,11 @@
               navbarSticky.classList.add("hidden");
             });
           });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+          setupMenu();
+          setupScrollEvent();
         });
       </script>
     </nav>
@@ -349,8 +393,8 @@
     </section>
 
     <!-- Method Section -->
-    <section id="method" class="py-16 lg:py-12 bg-white">
-      <div class="container mx-auto px-4 py-8 lg:py-12">
+    <section id="method" class="pt-16 lg:p-12 bg-white">
+      <div class="container mx-auto px-4">
         <div id="featureContent" class="flex flex-wrap justify-center"></div>
       </div>
 
@@ -410,7 +454,7 @@
                 <h2 class="text-3xl lg:text-5xl font-bold">${
                   feature.heading
                 }</h2>
-                <p class="text-base lg:text-lg text-gray-600 mt-4 mb-6 hidden md:block">${
+                <p class="text-base lg:text-lg text-gray-600 mt-4 mb-6 hidden lg:block">${
                   feature.desc
                 }</p>
               </div>
@@ -500,7 +544,7 @@
           },
           {
             title: "Asana",
-            desc: "Asana is one of the really solid solutions,the pay-as-you-go plan offers high-quality functional depth, with advanced automation and reporting, it remains slightly more expensive than those of its competitors.",
+            desc: "Asana goes beyond traditional project management software to provide a full work management solution that supports the dynamic, changing needs of enterprise companies. Asana doesn't just help you manage your tasks (although you can do that too)—it connects all the work your company is doing to your highest-level goals and business strategy.",
             link: "https://asana.com/",
             image:
               "https://assets.asana.biz/m/5f083bc48e06e1e2/original/asana-logo-1200x1200.png",
@@ -514,7 +558,7 @@
           },
           {
             title: "Monday.com",
-            desc: "Monday CRM is dedicated sales software that enables business owners, sales teams and RevOps to manage the entire sales cycle, from pre-sales to sales completion.",
+            desc: "Monday offers a broad spectrum of apps that make it easy to implement and get started right away. This works for small businesses who are new to project management software, though once you rev up your work, company size, or collaboration across teams, you might hit a threshold for what’s possible.",
             link: "https://monday.com/?cq_src=google_ads&cq_cmp=18570564138&cq_term=monday.com&cq_plac=&cq_net=g&cq_plt=gp&utm_medium=cpc&utm_source=adwordsbrand&utm_campaign=ww2-en-prm-workos-work_mgmt-brand-e-search-desktop-core-aw&utm_keyword=monday.com&utm_match_type=e&cluster=&subcluster=&ati=&utm_adgroup=monday.com&utm_banner=675398321203&gad_source=1&gclid=CjwKCAiAx_GqBhBQEiwAlDNAZsJypjQ0ULIyp6RVyqFWAQ39GBjtWd3IpacLoYmqX4K77rRJCk-aSRoCeQgQAvD_BwE",
             image:
               "https://i.pcmag.com/imagery/reviews/07uLSXntFIIwuWNgdqDcc7v-37.fit_scale.size_1028x578.v1608579277.jpg",
@@ -630,20 +674,20 @@
           link: "https://pm-guide.netguru.com/chapters/00-introduction.html",
         },
         {
-          title: "An operator's guide to powering your org with AI",
+          title: "What are SMART goals? Let's breakdown!",
           description:
-            "Implement strategies, address training gaps, and select the right vendors with our AI playbook.",
+            "Mastering SMART Goals: Achieve Clarity and Success by Crafting Specific, Measurable, and Time-Bound Objectives",
           imageURL:
-            "https://assets.asana.biz/transform/bcc6af54-fc75-4a61-9bd2-bb4356f4bc35/web-teams-operations-demo-thumbnail?io=transform:fill,width:1680&format=webp",
-          link: "/resources/human-centric-ai-operations-playbook?utm_medium=web&utm_source=feature&utm_campaign=aiplaybook24",
+            "https://assets.asana.biz/transform/b6080805-115b-4abb-92d2-0ef43ce7cc81/article-work-management-smart-goals-2x?io=transform:fill,width:1440&format=webp",
+          link: "https://asana.com/resources/smart-goals",
         },
         {
-          title: "An operator's guide to powering your org with AI",
+          title: "Marketing project management: How to structure your strategy",
           description:
-            "Implement strategies, address training gaps, and select the right vendors with our AI playbook.",
+            "Streamlining Marketing Initiatives: A Comprehensive Guide to Effective Project Management Strategies, Overcoming Challenges, and Maximizing Success in Marketing Campaigns",
           imageURL:
-            "https://assets.asana.biz/transform/bcc6af54-fc75-4a61-9bd2-bb4356f4bc35/web-teams-operations-demo-thumbnail?io=transform:fill,width:1680&format=webp",
-          link: "/resources/human-centric-ai-operations-playbook?utm_medium=web&utm_source=feature&utm_campaign=aiplaybook24",
+            "https://assets.asana.biz/transform/5984930c-ea70-43e3-bf33-45714a876998/article-project-management-marketing-project-management-2x?io=transform:fill,width:1440&format=webp",
+          link: "https://asana.com/resources/marketing-project-management",
         },
       ];
 
